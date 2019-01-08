@@ -86,6 +86,9 @@ link_files() {
 }
 
 initialize() {
+  # ignore shell execution error temporarily
+  set +e
+
   case ${OSTYPE} in
     darwin*)
       run_brew
@@ -97,10 +100,9 @@ initialize() {
   esac
 
   run_go
+  run_npm
   run_yarn
-  
-  # ignore shell execution error temporarily
-  set +e
+
   if [ ! -d $HOME/.cargo ]; then
     curl https://sh.rustup.rs -sSf | sh -s -- -y
   fi
