@@ -56,6 +56,7 @@ fi
 
 cd ${DOT_DIRECTORY}
 source ./lib/brew.sh
+source ./lib/fisher.sh
 source ./lib/go.sh
 source ./lib/npm.sh
 source ./lib/yarn.sh
@@ -99,6 +100,7 @@ initialize() {
       ;;
   esac
 
+  run_fisher
   run_go
   run_npm
   run_yarn
