@@ -57,6 +57,7 @@ fi
 cd ${DOT_DIRECTORY}
 source ./lib/brew.sh
 source ./lib/fisher.sh
+source ./lib/pip.sh
 source ./lib/go.sh
 source ./lib/npm.sh
 source ./lib/yarn.sh
@@ -67,6 +68,7 @@ link_files() {
     # If you have ignore files, add file/directory name here
     [[ ${f} = ".git" ]] && continue
     [[ ${f} = ".gitignore" ]] && continue
+    [[ ${f} = ".editorconfig" ]] && continue
 
     # Force remove the vim directory if it's already there
     [ -n "${OVERWRITE}" -a -e ${HOME}/${f} ] && rm -f ${HOME}/${f}
@@ -101,6 +103,7 @@ initialize() {
   esac
 
   run_fisher
+  run_pip
   run_go
   run_npm
   run_yarn
