@@ -73,3 +73,6 @@ test -x (which aws_completer); and complete --command aws --no-files --arguments
 set -x DOCKER_BUILDKIT 1
 
 [ -f ~/.google-cloud-sdk/path.fish.inc ]; and source ~/.google-cloud-sdk/path.fish.inc
+
+set -x HOMEBREW_INSTALL_CLEANUP 1
+
