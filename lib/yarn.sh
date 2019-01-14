@@ -6,6 +6,11 @@ run_yarn() {
 
     yarn global add \
                 nodemon \
+                @vue/cli \
+                vuepress \
+                newman \
+                gtop \
+                cfn-lint \
                 serverless
 
     echo "$(tput setaf 2)Install yarn packages complete. ✔︎$(tput sgr0)"
