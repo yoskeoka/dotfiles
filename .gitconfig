@@ -6,6 +6,7 @@
 
 [core]
 	excludesfile = /Users/yoske/.gitignore_global
+	quotepath = false
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
