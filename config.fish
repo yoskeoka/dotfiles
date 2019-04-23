@@ -25,7 +25,6 @@ set -x MANPATH /usr/local/opt/coreutils/libexec/gnuman $MANPATH
 
 alias awk='gawk'
 alias factor='gfactor'
-alias aws="python {$USER_BASE_PATH}/lib/python/site-packages/awscli"
 alias code.='code .'
 alias open.='open .'
 
@@ -80,3 +79,8 @@ and source ~/.google-cloud-sdk/path.fish.inc
 
 set -x HOMEBREW_INSTALL_CLEANUP 1
 
+
+# tabtab source for slss package
+# uninstall by removing these lines or running `tabtab uninstall slss`
+[ -f ~/.config/yarn/global/node_modules/tabtab/.completions/slss.fish ]
+and . ~/.config/yarn/global/node_modules/tabtab/.completions/slss.fish
