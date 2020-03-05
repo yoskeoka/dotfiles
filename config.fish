@@ -2,7 +2,7 @@ rbenv init - | source
 set -x GOPATH $HOME
 set -x GOBIN $GOPATH/bin
 set -x PATH $GOBIN $PATH
-set -x GOROOT (go env GOROOT)
+#set -x GOROOT (go env GOROOT)
 
 # rust
 set -x PATH $HOME/.cargo/bin $PATH
