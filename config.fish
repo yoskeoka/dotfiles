@@ -1,4 +1,4 @@
-rbenv init - | source
+status --is-interactive; and source (rbenv init -|psub)
 set -x GOPATH $HOME
 set -x GOBIN $GOPATH/bin
 set -x PATH $GOBIN $PATH
