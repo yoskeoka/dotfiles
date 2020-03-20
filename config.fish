@@ -1,3 +1,4 @@
+set PATH /usr/local/bin $PATH
 status --is-interactive; and source (rbenv init -|psub)
 set -x GOPATH $HOME
 set -x GOBIN $GOPATH/bin
