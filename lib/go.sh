@@ -6,7 +6,6 @@ run_go() {
 
     go get -u github.com/golang/lint/golint
     go get -u github.com/derekparker/delve/cmd/dlv
-    go get -u golang.org/x/vgo
 
     echo "$(tput setaf 2)Install go packages complete. ✔︎$(tput sgr0)"
   fi

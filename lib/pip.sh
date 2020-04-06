@@ -13,7 +13,6 @@ run_pip() {
   if has "pip"; then
     echo "Install pip packages..."
 
-    pip install awscli --user --upgrade
     pip install awslogs --user --upgrade
 
     echo "$(tput setaf 2)Install pip packages complete. ✔︎$(tput sgr0)"

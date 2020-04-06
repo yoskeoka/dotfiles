@@ -9,10 +9,7 @@ run_yarn() {
                 nodemon \
                 @vue/cli \
                 vuepress \
-                newman \
                 gtop \
-                cfn-lint \
-                serverless \
                 ts-node
 
     echo "$(tput setaf 2)Install yarn packages complete. ✔︎$(tput sgr0)"

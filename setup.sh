@@ -85,6 +85,13 @@ link_files() {
   [ -n "${OVERWRITE}" -a -e ${HOME}/${conf_dest} ] && rm -f ${HOME}/${conf_dest}
   ln -snfv ${DOT_DIRECTORY}/${conf_src} ${HOME}/${conf_dest}
 
+  ## karabiner.json
+  conf_dest=".config/karabiner/karabiner.json"
+  conf_src="karabiner.json"
+
+  [ -n "${OVERWRITE}" -a -e ${HOME}/${conf_dest} ] && rm -f ${HOME}/${conf_dest}
+  ln -snfv ${DOT_DIRECTORY}/${conf_src} ${HOME}/${conf_dest}
+
   echo $(tput setaf 2)Deploy dotfiles complete!. ✔︎$(tput sgr0)
 }
 
