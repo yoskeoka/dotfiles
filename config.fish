@@ -1,9 +1,21 @@
 set PATH /usr/local/bin $PATH
-status --is-interactive; and source (rbenv init -|psub)
+
 set -x GOPATH $HOME
 set -x GOBIN $GOPATH/bin
-set -x PATH $GOBIN $PATH
+export PATH="$GOROOT/bin:$PATH"
+export PATH="$PATH:$GOBIN"
 #set -x GOROOT (go env GOROOT)
+
+# rbenv
+status --is-interactive; and source (rbenv init -|psub)
+
+# goenv
+export GOENV_ROOT="$HOME/.goenv"
+export PATH="$GOENV_ROOT/bin:$PATH"
+status --is-interactive; and source (goenv init -|psub)
+
+# direnv
+test (which direnv); and eval (direnv hook fish)
 
 # rust
 set -x PATH $HOME/.cargo/bin $PATH
