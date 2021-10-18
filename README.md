@@ -31,3 +31,9 @@ bash ~/dotfiles/setup.sh deploy
 # Force override existing dotfiles
 bash ~/dotfiles/setup.sh -f deploy
 ```
+
+## 4. Update dotfiles
+
+```sh
+brew bundle dump
+```
