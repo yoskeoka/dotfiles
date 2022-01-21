@@ -35,5 +35,5 @@ bash ~/dotfiles/setup.sh -f deploy
 ## 4. Update dotfiles
 
 ```sh
-brew bundle dump
+brew bundle dump -f
 ```
