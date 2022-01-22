@@ -4,7 +4,8 @@ set -x PATH /usr/local/bin $PATH
 set -x PATH /usr/local/opt/llvm@7/bin $PATH
 
 # rbenv
-status --is-interactive; and source (rbenv init -|psub)
+test -x (which rbenv)
+and status --is-interactive; and source (rbenv init -|psub)
 
 # GOPATH
 set -x GOPATH $HOME
