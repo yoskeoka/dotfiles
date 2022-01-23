@@ -5,7 +5,7 @@ run_brew() {
     echo "$(tput setaf 2)Already installed Homebrew ✔︎$(tput sgr0)"
   else
     echo "Installing Homebrew..."
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   fi
 
   if has "brew"; then

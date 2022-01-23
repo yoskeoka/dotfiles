@@ -1,4 +1,5 @@
 set -x PATH /usr/local/bin $PATH
+test -d "/opt/homebrew"; and set -x PATH /opt/homebrew/bin /opt/homebrew/sbin $PATH
 
 # llvm
 set -x PATH /usr/local/opt/llvm@7/bin $PATH
@@ -14,7 +15,7 @@ export PATH="$PATH:$GOBIN"
 #set -x GOROOT (go env GOROOT)
 
 # direnv
-test (which direnv); and eval (direnv hook fish)
+test -x (which direnv); and eval (direnv hook fish)
 
 # rust
 set -x PATH $HOME/.cargo/bin $PATH
@@ -35,16 +36,13 @@ set -x PATH $HOME/.nodebrew/current/bin $PATH
 set -x PATH /usr/local/opt/coreutils/libexec/gnubin $PATH
 set -x MANPATH /usr/local/opt/coreutils/libexec/gnuman $MANPATH
 
+test -x (which gdircolors); and alias dircolors='gdircolors'
 alias awk='gawk'
 alias factor='gfactor'
 alias code.='code .'
 alias open.='open .'
 
-test -x (which kubecolor)
-and alias kubectl="kubecolor"
-
-test -x (which kubecolor)
-and alias k="kubectl"
+test -x (which kubecolor); and alias kubectl="kubecolor"; and alias k="kubectl"
 
 # coloring ls command
 bass (dircolors ~/.colorrc)
