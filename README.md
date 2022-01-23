@@ -32,7 +32,11 @@ bash ~/dotfiles/setup.sh deploy
 bash ~/dotfiles/setup.sh -f deploy
 ```
 
-## 4. Update dotfiles
+## 4. Install Fonts
+
+https://github.com/powerline/fonts
+
+## 5. Update dotfiles
 
 ```sh
 brew bundle dump -f
