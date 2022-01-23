@@ -4,8 +4,7 @@ set -x PATH /usr/local/bin $PATH
 set -x PATH /usr/local/opt/llvm@7/bin $PATH
 
 # rbenv
-test -x (which rbenv)
-and status --is-interactive; and source (rbenv init -|psub)
+test -x (which rbenv); and status --is-interactive; and source (rbenv init -|psub)
 
 # GOPATH
 set -x GOPATH $HOME
@@ -64,7 +63,7 @@ set -U FZF_LEGACY_KEYBINDINGS 0
 
 function __ghq_cd_repository -d "Change local repository directory"
     ghq list --full-path | fzf --reverse --ansi | read -l repo_path
-    if echo $repo_path | grep -E "/" >/dev/null 2>&1
+    if echo $repo_path | grep -E / >/dev/null 2>&1
         cd $repo_path
         commandline -f repaint
     end
@@ -73,9 +72,9 @@ end
 function fish_user_key_bindings
     bind \cr 'peco_sync_select_history (commandline -b)'
     #   bind \cs peco_select_ghq_repository
-    bind \cg '__ghq_cd_repository'
+    bind \cg __ghq_cd_repository
     if bind -M insert >/dev/null 2>&1
-        bind -M insert \cg '__ghq_cd_repository'
+        bind -M insert \cg __ghq_cd_repository
     end
 end
 
@@ -104,11 +103,13 @@ set -x HOMEBREW_INSTALL_CLEANUP 1
 [ -f ~/.config/yarn/global/node_modules/tabtab/.completions/slss.fish ]
 and . ~/.config/yarn/global/node_modules/tabtab/.completions/slss.fish
 
-set -g fish_user_paths "/usr/local/opt/mysql-client/bin" $fish_user_paths
+set -g fish_user_paths /usr/local/opt/mysql-client/bin $fish_user_paths
 set -g fish_user_paths "/usr/local/opt/mysql-client@5.7/bin" $fish_user_paths
 
 set -x PATH $PATH /Applications/Postgres.app/Contents/Versions/latest/bin
 
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '$HOME/google-cloud-sdk/path.fish.inc' ]; . '$HOME/google-cloud-sdk/path.fish.inc'; end
+if [ -f '$HOME/google-cloud-sdk/path.fish.inc' ]
+    . '$HOME/google-cloud-sdk/path.fish.inc'
+end
