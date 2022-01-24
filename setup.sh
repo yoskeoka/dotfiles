@@ -78,14 +78,18 @@ link_files() {
     fi
   done
 
-  ## config.fish
-  conf_dest=".config/fish/config.fish"
-  conf_src="config.fish"
-
-  [ -n "${OVERWRITE}" -a -e ${HOME}/${conf_dest} ] && rm -f ${HOME}/${conf_dest}
-  mkdir -p $(dirname ${HOME}/${conf_dest})
-  touch ${HOME}/${conf_dest}
-  ln -snfv ${DOT_DIRECTORY}/${conf_src} ${HOME}/${conf_dest}
+  link_arr=( 
+    "config.fish .config/fish/config.fish"
+    "kitty.conf .config/kitty/kitty.conf"
+  )
+  for link in "${link_arr[@]}"
+  do
+    IFS=' ' read -r src dest <<< $link
+    echo "$src -> $dest"
+    [ -n "${OVERWRITE}" -a -e ${HOME}/${dest} ] && rm -f ${HOME}/${dest}
+    mkdir -p $(dirname ${HOME}/${dest})
+    ln -snfv ${DOT_DIRECTORY}/${src} ${HOME}/${dest}
+  done
 
   ## karabiner.json
   conf_dest=".config/karabiner/karabiner.json"
@@ -93,8 +97,7 @@ link_files() {
 
   [ -n "${OVERWRITE}" -a -e ${HOME}/${conf_dest} ] && rm -f ${HOME}/${conf_dest}
   mkdir -p $(dirname ${HOME}/${conf_dest})
-  touch ${HOME}/${conf_dest}
-  ln -snfv ${DOT_DIRECTORY}/${conf_src} ${HOME}/${conf_dest}
+  cp ${DOT_DIRECTORY}/${conf_src} ${HOME}/${conf_dest}
 
   echo $(tput setaf 2)Deploy dotfiles complete!. ✔︎$(tput sgr0)
 }
