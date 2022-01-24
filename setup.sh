@@ -78,8 +78,10 @@ link_files() {
     fi
   done
 
-  link_arr=( 
+  link_arr=(
+    # dotfiles/{$src} {$HOME}/{$dest}
     "config.fish .config/fish/config.fish"
+    "starship.toml .config//starship.toml"
     "kitty.conf .config/kitty/kitty.conf"
   )
   for link in "${link_arr[@]}"
