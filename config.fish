@@ -2,7 +2,7 @@ set -x PATH /usr/local/bin $PATH
 test -d "/opt/homebrew"; and set -x PATH /opt/homebrew/bin /opt/homebrew/sbin $PATH
 
 # llvm
-set -x PATH /usr/local/opt/llvm@7/bin $PATH
+# set -x PATH /usr/local/opt/llvm@7/bin $PATH
 
 # rbenv
 test -x (which rbenv); and status --is-interactive; and source (rbenv init -|psub)
