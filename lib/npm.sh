@@ -1,6 +1,14 @@
 #!/bin/bash
 
 run_npm() {
+
+  if has "nodebrew"; then
+    echo "Install node..."
+    mkdir -p "$HOME/.nodebrew/src"
+    nodebrew install stable
+    nodebrew use stable
+  fi
+
   if has "npm"; then
     echo "Install npm packages..."
 
