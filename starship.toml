@@ -1,1 +1,4 @@
 add_newline = false
+
+[nodejs]
+format = "via [🤖 $version](bold green) "

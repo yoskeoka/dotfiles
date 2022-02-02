@@ -10,7 +10,7 @@ run_brew() {
 
   if has "brew"; then
     echo "Updating Homebrew..."
-    brew update && brew upgrade
+    brew update
     [[ $? ]] && echo "$(tput setaf 2)Update Homebrew complete. ✔︎$(tput sgr0)"
 
     echo "Installing missing Homebrew formulae..."
@@ -22,5 +22,9 @@ run_brew() {
     echo "Cleanup Homebrew..."
     brew cleanup
     echo "$(tput setaf 2)Cleanup Homebrew complete. ✔︎$(tput sgr0)"
+  fi
+
+  if has "fzf"; then
+    $(brew --prefix)/opt/fzf/install --completion --no-key-bindings --no-update-rc
   fi
 }

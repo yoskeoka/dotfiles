@@ -21,8 +21,10 @@ test -x (which direnv); and eval (direnv hook fish)
 set -x PATH $HOME/.cargo/bin $PATH
 
 # add python user base to PATH
-set USER_BASE_PATH (python -m site --user-base)
-set -x PATH $PATH {$USER_BASE_PATH}/bin
+if test -x (which python3)
+  set USER_BASE_PATH (python3 -m site --user-base)
+  set -x PATH $PATH {$USER_BASE_PATH}/bin
+end 
 
 set -x EDITOR vim
 
