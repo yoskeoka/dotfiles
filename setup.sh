@@ -16,7 +16,7 @@ usage() {
 Usage:
   $name [arguments] [command]
 Commands:
-  deploy
+  deploy [-f]
   initialize
   update
 Arguments:
@@ -61,6 +61,7 @@ source ./lib/pip.sh
 source ./lib/go.sh
 source ./lib/npm.sh
 source ./lib/yarn.sh
+source ./lib/gnu_gcc.sh
 
 link_files() {
   for f in .??*
@@ -70,7 +71,7 @@ link_files() {
     [[ ${f} = ".gitignore" ]] && continue
     [[ ${f} = ".editorconfig" ]] && continue
 
-    # Force remove the vim directory if it's already there
+    # Force remove the file if it's already there
     [ -n "${OVERWRITE}" -a -e ${HOME}/${f} ] && rm -f ${HOME}/${f}
     if [ ! -e ${HOME}/${f} ]; then
 
@@ -81,7 +82,7 @@ link_files() {
   link_arr=(
     # dotfiles/{$src} {$HOME}/{$dest}
     "config.fish .config/fish/config.fish"
-    "starship.toml .config//starship.toml"
+    "starship.toml .config/starship.toml"
     "kitty.conf .config/kitty/kitty.conf"
   )
   for link in "${link_arr[@]}"
@@ -100,6 +101,16 @@ link_files() {
   [ -n "${OVERWRITE}" -a -e ${HOME}/${conf_dest} ] && rm -f ${HOME}/${conf_dest}
   mkdir -p $(dirname ${HOME}/${conf_dest})
   cp ${DOT_DIRECTORY}/${conf_src} ${HOME}/${conf_dest}
+
+  # OS dependent
+  case ${OSTYPE} in
+  darwin*)
+    mkdir -p ${HOME}/Library/Preferences/atcoder-cli-nodejs
+    ln -snfv ${DOT_DIRECTORY}/acc/* ${HOME}/Library/Preferences/atcoder-cli-nodejs
+    ;;
+  *)
+    ;;
+  esac
 
   echo $(tput setaf 2)Deploy dotfiles complete!. ✔︎$(tput sgr0)
 }
@@ -121,12 +132,10 @@ initialize() {
   run_fisher
   run_pip
   run_go
+  run_rust
   run_npm
   run_yarn
-
-  if [ ! -d $HOME/.cargo ]; then
-    curl https://sh.rustup.rs -sSf | sh -s -- -y
-  fi
+  run_gnu_gcc
 
   echo "$(tput setaf 2)Initialize complete!. ✔︎$(tput sgr0)"
 }

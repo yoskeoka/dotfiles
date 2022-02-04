@@ -1,3 +1,4 @@
+export PATH=/usr/local/bin:$PATH
 source ~/.zplug/init.zsh
 
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
@@ -37,6 +38,7 @@ eval `dircolors ~/.colorrc`
 alias ls='ls --color=auto'
 alias ll='ls -l'
 alias la='ls -al'
+alias ojt='g++ main.cpp && oj t'
 
 
 export HOMEBREW_INSTALL_CLEANUP=1

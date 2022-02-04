@@ -7,8 +7,7 @@ run_yarn() {
 # TODO: `yarn global list --depth=0`
     yarn global add \
                 nodemon \
-                @vue/cli \
-                vuepress \
+                atcoder-cli \
                 gtop \
                 ts-node
 

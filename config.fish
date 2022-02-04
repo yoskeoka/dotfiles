@@ -43,6 +43,7 @@ alias awk='gawk'
 alias factor='gfactor'
 alias code.='code .'
 alias open.='open .'
+alias ojt='g++ main.cpp && oj t'
 
 test -x (which kubecolor); and alias kubectl="kubecolor"; and alias k="kubectl"
 

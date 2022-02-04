@@ -13,7 +13,11 @@ run_pip() {
   if has "pip3"; then
     echo "Install pip packages..."
 
-    pip3 install awslogs --user --upgrade
+    pip3 install --user \
+      awslogs \
+      online-judge-tools \
+      selenium \
+      --upgrade
 
     echo "$(tput setaf 2)Install pip packages complete. ✔︎$(tput sgr0)"
   fi
