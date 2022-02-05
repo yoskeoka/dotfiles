@@ -1,5 +1,5 @@
 {
-	"oj-path": "~/Library/Python/3.9/bin/oj",
+	"oj-path": "oj",
 	"default-contest-dirname-format": "{ContestID}",
 	"default-task-dirname-format": "{tasklabel}",
 	"default-test-dirname-format": "test",

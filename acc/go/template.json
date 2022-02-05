@@ -1,8 +1,8 @@
 {
   "task": {
-    "program": ["main.cpp"],
+    "program": ["main.go"],
     "static": ["Makefile"],
-    "submit": "main.cpp",
+    "submit": "main.go",
     "testDir": "test"
   }
 }
