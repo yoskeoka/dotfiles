@@ -105,8 +105,8 @@ link_files() {
   # OS dependent
   case ${OSTYPE} in
   darwin*)
-    mkdir -p ${HOME}/Library/Preferences/atcoder-cli-nodejs
-    ln -snfv ${DOT_DIRECTORY}/acc/* ${HOME}/Library/Preferences/atcoder-cli-nodejs
+    mkdir -p ${HOME}/Library/Preferences
+    ln -snfv ${DOT_DIRECTORY}/acc ${HOME}/Library/Preferences/atcoder-cli-nodejs
     ;;
   *)
     ;;

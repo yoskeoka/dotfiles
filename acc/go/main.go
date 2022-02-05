@@ -51,3 +51,6 @@ func readLongLine() string {
 	}
 	return string(buf)
 }
+
+// utility functions found here, if needed.
+// https://gist.github.com/halllllll/853ab587fd82ee3ffe6f7fb7fb499695#file-utility-go
