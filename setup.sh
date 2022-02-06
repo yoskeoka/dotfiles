@@ -56,9 +56,11 @@ fi
 
 cd ${DOT_DIRECTORY}
 source ./lib/brew.sh
+source ./lib/zsh.sh
 source ./lib/fisher.sh
 source ./lib/pip.sh
 source ./lib/go.sh
+source ./lib/rust.sh
 source ./lib/npm.sh
 source ./lib/yarn.sh
 source ./lib/gnu_gcc.sh
@@ -129,6 +131,7 @@ initialize() {
       ;;
   esac
 
+  run_zsh
   run_fisher
   run_pip
   run_go

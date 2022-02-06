@@ -8,10 +8,11 @@ run_rust() {
     echo "Installing rustup..."
     if [ ! -d $HOME/.cargo ]; then
       curl https://sh.rustup.rs -sSf | sh -s -- -y
-    fi  
+    fi
+    echo "$(tput setaf 2)Install rustup complete! ✔︎$(tput sgr0)"
   fi
 
-  if has "rustc"; then
-  
+  if has "cargo"; then
+    echo "cargo has nothing to install now"
   fi
 }

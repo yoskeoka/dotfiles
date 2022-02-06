@@ -16,7 +16,6 @@ run_pip() {
     pip3 install --user \
       awslogs \
       online-judge-tools \
-      selenium \
       --upgrade
 
     echo "$(tput setaf 2)Install pip packages complete. ✔︎$(tput sgr0)"
