@@ -52,7 +52,9 @@ export GOBIN=$GOPATH/bin
 export PATH=$GOBIN:$GOROOT/bin:$PATH
 
 # Rust
-export PATH=$HOME/.cargo/bin:$PATH
+if [ -f ~/.cargo/env ]; then
+  source ~/.cargo/env
+fi
 
 # node
 export PATH="$HOME/.nodebrew/current/bin:$PATH"

@@ -38,13 +38,13 @@ while getopts "fh" opt; do
 done
 shift $((OPTIND - 1))
 
-# If missing, download and extract the dotfiles repository
+# If the dotfiles directory missing, download and extract the dotfiles repository
 if [ ! -d ${DOT_DIRECTORY} ]; then
   echo "Downloading dotfiles..."
   mkdir ${DOT_DIRECTORY}
 
   if has "git"; then
-    git clone --recursive "${REMOTE_URL}" "${DOT_DIRECTORY}"
+    git clone --depth 1 --recursive "${REMOTE_URL}" "${DOT_DIRECTORY}"
   else
     curl -fsSLo ${HOME}/dotfiles.tar.gz ${DOT_TARBALL}
     tar -zxf ${HOME}/dotfiles.tar.gz --strip-components 1 -C ${DOT_DIRECTORY}
