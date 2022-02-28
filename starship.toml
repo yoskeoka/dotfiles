@@ -1,4 +1,9 @@
 add_newline = false
 
+[directory]
+truncation_length = 2
+# truncation_symbol         = "..."
+fish_style_pwd_dir_length = 3
+
 [nodejs]
 format = "via [🤖 $version](bold green) "
