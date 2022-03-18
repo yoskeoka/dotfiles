@@ -1,13 +1,13 @@
 [include]
 	path = .gitconfig.user
-# # This file should contain below section.
+# # This file should contain a user section like below.
 # [user]
 # 	name = your.name
 # 	email = "your.email@private"
 
 [includeIf "gitdir:**/github.com/moneyforward/"]
 	path = .gitconfig.mf-user
-# # This file should contain below section.
+# # This file should contain a user section like below.
 # [user]
 # 	name = your.name
 # 	email = "your.email@moneyforward"
