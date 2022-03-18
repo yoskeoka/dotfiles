@@ -1,6 +1,14 @@
+
 [user]
 	name = yoskeoka
-	email = y.okamoto@gemcook.com
+	email = yoske95@gmail.com
+
+[includeIf "gitdir:**/github.com/moneyforward/"]
+	path = .gitconfig.mf-user
+# # This file should contain below section.
+# [user]
+# 	email = "your.email@moneyforward"
+
 [ghq]
 	root = ~/src
 [core]
@@ -16,3 +24,7 @@
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
+[pull]
+	ff = only
+[merge]
+	ff = false
