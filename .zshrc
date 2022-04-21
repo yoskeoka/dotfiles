@@ -56,8 +56,10 @@ if [ -f ~/.cargo/env ]; then
   source ~/.cargo/env
 fi
 
-# node
-export PATH="$HOME/.nodebrew/current/bin:$PATH"
+# node, ruby
+if test -d "/opt/homebrew"; then
+  . $(brew --prefix asdf)/libexec/asdf.sh
+fi
 
 # python
 if [ -x $(which python3) ]; then
@@ -66,8 +68,6 @@ if [ -x $(which python3) ]; then
   export PATH=$PATH:$USER_BASE_PATH/bin
 fi
 
-# ruby
-eval "$(rbenv init - zsh)"
 
 # aws completer; [WARNING]: this may slow loading .zshrc
 # autoload bashcompinit && bashcompinit
@@ -97,3 +97,6 @@ function select-gitrepo() {
 }
 zle -N select-gitrepo
 bindkey '^g' select-gitrepo
+
+# workaround
+export PATH="/opt/homebrew/opt/go@1.17/bin:$PATH"

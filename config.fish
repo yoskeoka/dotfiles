@@ -4,9 +4,6 @@ test -d "/opt/homebrew"; and set -x PATH /opt/homebrew/bin /opt/homebrew/sbin $P
 # llvm
 # set -x PATH /usr/local/opt/llvm@7/bin $PATH
 
-# rbenv
-test -x (which rbenv); and status --is-interactive; and source (rbenv init -|psub)
-
 # GOPATH
 set -x GOPATH $HOME
 set -x GOBIN $GOPATH/bin
@@ -31,8 +28,8 @@ set -x EDITOR vim
 # superior /usr/local/bin than /usr/bin
 set -x PATH /usr/local/bin $PATH
 
-# superior nodebrew
-set -x PATH $HOME/.nodebrew/current/bin $PATH
+# asdf (node, ruby)
+test -x (which brew); and source (brew --prefix asdf)/libexec/asdf.fish
 
 # use gnu version unix commands
 set -x PATH /usr/local/opt/coreutils/libexec/gnubin $PATH

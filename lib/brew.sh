@@ -22,6 +22,17 @@ run_brew() {
     echo "Cleanup Homebrew..."
     brew cleanup
     echo "$(tput setaf 2)Cleanup Homebrew complete. ✔︎$(tput sgr0)"
+
+    echo "Install asdf plugins..."
+    echo "Install node..."
+    asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+    asdf install nodejs latest
+    asdf global nodejs latest
+    echo "Install ruby..."
+    asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git
+    asdf install ruby latest
+    asdf global ruby latest
+    echo "$(tput setaf 2)Install asdf plugins complete. ✔︎$(tput sgr0)"
   fi
 
   if has "fzf"; then
