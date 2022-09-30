@@ -31,3 +31,5 @@
 	ff = only
 [merge]
 	ff = false
+[push]
+	autoSetupRemote = true

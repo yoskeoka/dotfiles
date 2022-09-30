@@ -33,6 +33,13 @@ if test -x $(which kubecolor); then
 fi
 alias k='kubectl'
 
+# history config
+HISTSIZE=1000000
+SAVEHIST=1000000
+setopt hist_ignore_dups  # ignore duplication command history list
+setopt hist_ignore_space # ignore when commands starts with space
+setopt share_history     # share command history data
+
 
 eval `dircolors ~/.colorrc`
 alias ls='ls --color=auto'
@@ -68,6 +75,10 @@ if [ -x $(which python3) ]; then
   export PATH=$PATH:$USER_BASE_PATH/bin
 fi
 
+# colordiff
+if [ -x $(which colordiff) ]; then
+  alias diff='colordiff'
+fi
 
 # aws completer; [WARNING]: this may slow loading .zshrc
 # autoload bashcompinit && bashcompinit
@@ -99,4 +110,6 @@ zle -N select-gitrepo
 bindkey '^g' select-gitrepo
 
 # workaround
-export PATH="/opt/homebrew/opt/go@1.17/bin:$PATH"
+[[ /opt/homebrew/bin/kubectl ]] && source <(kubectl completion zsh)
+
+alias watch='viddy'
