@@ -1,5 +1,5 @@
 export PATH=/usr/local/bin:$PATH
-source ~/.zplug/init.zsh
+source $HOME/.zplug/init.zsh
 
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "zsh-users/zsh-autosuggestions", defer:2
@@ -41,7 +41,7 @@ setopt hist_ignore_space # ignore when commands starts with space
 setopt share_history     # share command history data
 
 
-eval `dircolors ~/.colorrc`
+eval `dircolors $HOME/.colorrc`
 alias ls='ls --color=auto'
 alias ll='ls -l'
 alias la='ls -al'
@@ -59,8 +59,8 @@ export GOBIN=$GOPATH/bin
 export PATH=$GOBIN:$GOROOT/bin:$PATH
 
 # Rust
-if [ -f ~/.cargo/env ]; then
-  source ~/.cargo/env
+if [ -f $HOME/.cargo/env ]; then
+  source $HOME/.cargo/env
 fi
 
 # node, ruby
@@ -113,3 +113,4 @@ bindkey '^g' select-gitrepo
 [[ /opt/homebrew/bin/kubectl ]] && source <(kubectl completion zsh)
 
 alias watch='viddy'
+export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
