@@ -16,13 +16,8 @@ Clone this repository into `~/dotfiles`
 git clone https://github.com/yoskeoka/dotfiles.git ~/dotfiles
 ```
 
-## 2. Install
 
-```sh
-bash ~/dotfiles/setup.sh initialize
-```
-
-## 3. Deploy dotfiles
+## 2. Deploy dotfiles
 
 ```sh
 # Do not override existing dotfiles
@@ -30,6 +25,12 @@ bash ~/dotfiles/setup.sh deploy
 
 # Force override existing dotfiles
 bash ~/dotfiles/setup.sh -f deploy
+```
+
+## 3. Install
+
+```sh
+bash ~/dotfiles/setup.sh initialize
 ```
 
 ## 4. Install Fonts
