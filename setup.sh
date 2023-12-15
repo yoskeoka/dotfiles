@@ -86,6 +86,7 @@ link_files() {
     "config.fish .config/fish/config.fish"
     "starship.toml .config/starship.toml"
     "kitty.conf .config/kitty/kitty.conf"
+    # ".hammerspoon .hammerspoon"
   )
   for link in "${link_arr[@]}"
   do
