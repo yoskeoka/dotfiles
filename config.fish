@@ -111,3 +111,7 @@ set -x PATH $PATH /Applications/Postgres.app/Contents/Versions/latest/bin
 if [ -f '$HOME/google-cloud-sdk/path.fish.inc' ]
     . '$HOME/google-cloud-sdk/path.fish.inc'
 end
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+set --export --prepend PATH "$HOME/.rd/bin"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
