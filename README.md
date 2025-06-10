@@ -16,7 +16,6 @@ Clone this repository into `~/dotfiles`
 git clone https://github.com/yoskeoka/dotfiles.git ~/dotfiles
 ```
 
-
 ## 2. Deploy dotfiles
 
 ```sh
@@ -35,7 +34,7 @@ bash ~/dotfiles/setup.sh initialize
 
 ## 4. Install Fonts
 
-https://github.com/powerline/fonts
+[Powerline Fonts](https://github.com/powerline/fonts)
 
 ## 5. Update dotfiles
 
