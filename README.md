@@ -8,6 +8,8 @@ Install XCode Command-Line Tools.
 xcode-select --install
 ```
 
+Generate SSH Key and add it to GitHub.
+
 ## 1. Git Clone
 
 Clone this repository into `~/dotfiles`
