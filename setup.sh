@@ -10,6 +10,10 @@ has() {
   type "$1" > /dev/null 2>&1
 }
 
+is_wsl() {
+  grep -qi microsoft /proc/version 2>/dev/null
+}
+
 usage() {
   name=`basename $0`
   cat <<EOF
@@ -56,6 +60,8 @@ fi
 
 cd ${DOT_DIRECTORY}
 source ./lib/brew.sh
+source ./lib/apt.sh
+source ./lib/asdf.sh
 source ./lib/zsh.sh
 source ./lib/fisher.sh
 source ./lib/pip.sh
@@ -86,8 +92,16 @@ link_files() {
     "config.fish .config/fish/config.fish"
     "starship.toml .config/starship.toml"
     "kitty.conf .config/kitty/kitty.conf"
-    ".hammerspoon .hammerspoon"
   )
+  case ${OSTYPE} in
+  darwin*)
+    link_arr+=(
+      ".hammerspoon .hammerspoon"
+    )
+    ;;
+  *)
+    ;;
+  esac
   for link in "${link_arr[@]}"
   do
     IFS=' ' read -r src dest <<< $link
@@ -98,12 +112,18 @@ link_files() {
   done
 
   ## karabiner.json
-  conf_dest=".config/karabiner/karabiner.json"
-  conf_src="karabiner.json"
+  case ${OSTYPE} in
+  darwin*)
+    conf_dest=".config/karabiner/karabiner.json"
+    conf_src="karabiner.json"
 
-  [ -n "${OVERWRITE}" -a -e ${HOME}/${conf_dest} ] && rm -f ${HOME}/${conf_dest}
-  mkdir -p $(dirname ${HOME}/${conf_dest})
-  cp ${DOT_DIRECTORY}/${conf_src} ${HOME}/${conf_dest}
+    [ -n "${OVERWRITE}" -a -e ${HOME}/${conf_dest} ] && rm -f ${HOME}/${conf_dest}
+    mkdir -p $(dirname ${HOME}/${conf_dest})
+    cp ${DOT_DIRECTORY}/${conf_src} ${HOME}/${conf_dest}
+    ;;
+  *)
+    ;;
+  esac
 
   # OS dependent
   case ${OSTYPE} in
@@ -125,6 +145,12 @@ initialize() {
   case ${OSTYPE} in
     darwin*)
       run_brew
+      run_asdf
+      ;;
+    linux*)
+      run_apt
+      run_brew
+      run_asdf
       ;;
     *)
       echo $(tput setaf 1)Working only OSX$(tput sgr0)
@@ -139,13 +165,23 @@ initialize() {
   run_rust
   run_npm
   run_yarn
-  run_gnu_gcc
+  case ${OSTYPE} in
+    darwin*)
+      run_gnu_gcc
+      ;;
+    *)
+      ;;
+  esac
 
   echo "$(tput setaf 2)Initialize complete!. ✔︎$(tput sgr0)"
 }
 
 update() {
-  brew bundle dump -f
+  if has "brew"; then
+    brew bundle dump -f
+  else
+    echo "$(tput setaf 1)brew not found; skipping update$(tput sgr0)"
+  fi
 }
 
 command=$1

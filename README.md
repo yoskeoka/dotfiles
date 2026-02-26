@@ -2,6 +2,8 @@
 
 ## 0. Prerequisites
 
+### macOS
+
 Install XCode Command-Line Tools.
 
 ```sh
@@ -9,6 +11,15 @@ xcode-select --install
 ```
 
 Generate SSH Key and add it to GitHub.
+
+### Linux (WSL)
+
+Ensure build tools and curl/git are available.
+
+```sh
+sudo apt-get update -y
+sudo apt-get install -y build-essential ca-certificates curl git
+```
 
 ## 1. Git Clone
 

@@ -30,6 +30,7 @@ set -x PATH /usr/local/bin $PATH
 
 # asdf (node, ruby)
 test -x (which brew); and source (brew --prefix asdf)/libexec/asdf.fish
+test -f "$HOME/.asdf/asdf.fish"; and source "$HOME/.asdf/asdf.fish"
 
 # use gnu version unix commands
 set -x PATH /usr/local/opt/coreutils/libexec/gnubin $PATH

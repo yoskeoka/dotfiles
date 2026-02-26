@@ -1,4 +1,4 @@
-export PATH=/usr/local/bin:$PATH
+export PATH=/home/yoske/.local/bin:/usr/local/bin:$PATH
 source $HOME/.zplug/init.zsh
 
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
@@ -7,7 +7,7 @@ zplug "zsh-users/zsh-completions", defer:2
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check; then
-    printf "Install? [y/N]: "
+    printf "Install zplug plugins? [y/N]: "
     if read -q; then
         echo; zplug install
     fi
@@ -24,11 +24,15 @@ if test -d "/opt/homebrew"; then
   export PATH=/opt/homebrew/bin:/opt/homebrew/sbin:$PATH
 fi
 
-if test -x $(which gdircolors); then
+if [[ "$OSTYPE" == "linux"* ]] && [ -x /home/linuxbrew/.linuxbrew/bin/brew ]; then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
+fi
+
+if command -v gdircolors >/dev/null 2>&1; then
   alias dircolors='gdircolors'
 fi
 
-if test -x $(which kubecolor); then
+if command -v kubecolor >/dev/null 2>&1; then
   alias kubectl='kubecolor'
 fi
 alias k='kubectl'
@@ -41,7 +45,9 @@ setopt hist_ignore_space # ignore when commands starts with space
 setopt share_history     # share command history data
 
 
-eval `dircolors $HOME/.colorrc`
+if command -v dircolors >/dev/null 2>&1; then
+  eval "$(dircolors "$HOME/.colorrc")"
+fi
 alias ls='ls --color=auto'
 alias ll='ls -l'
 alias la='ls -al'
@@ -59,8 +65,8 @@ export GOBIN=$GOPATH/bin
 export PATH=$GOBIN:$GOROOT/bin:$PATH
 
 # Rust
-if [ -f $HOME/.cargo/env ]; then
-  source $HOME/.cargo/env
+if [ -f "$HOME/.cargo/env" ]; then
+  source "$HOME/.cargo/env"
 fi
 
 # node, ruby
@@ -69,14 +75,14 @@ if test -d "/opt/homebrew"; then
 fi
 
 # python
-if [ -x $(which python3) ]; then
+if command -v python3 >/dev/null 2>&1; then
   alias python='python3'
   USER_BASE_PATH=$(python -m site --user-base)
   export PATH=$PATH:$USER_BASE_PATH/bin
 fi
 
 # colordiff
-if [ -x $(which colordiff) ]; then
+if command -v colordiff >/dev/null 2>&1; then
   alias diff='colordiff'
 fi
 
@@ -85,8 +91,12 @@ fi
 # autoload -Uz compinit && compinit
 # complete -C 'aws_completer' aws
 
-eval "$(direnv hook zsh)"
-eval "$(starship init zsh)"
+if command -v direnv >/dev/null 2>&1; then
+  eval "$(direnv hook zsh)"
+fi
+if command -v starship >/dev/null 2>&1; then
+  eval "$(starship init zsh)"
+fi
 
 function select-history() {
     BUFFER=$(history -n -r 1 | fzf --no-sort +m --query "$LBUFFER" --prompt="History > ")
@@ -110,7 +120,9 @@ zle -N select-gitrepo
 bindkey '^g' select-gitrepo
 
 # workaround
-[[ /opt/homebrew/bin/kubectl ]] && source <(kubectl completion zsh)
+if command -v kubectl >/dev/null 2>&1; then
+  source <(kubectl completion zsh)
+fi
 
 alias watch='viddy'
 export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
