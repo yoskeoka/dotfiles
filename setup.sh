@@ -138,6 +138,47 @@ link_files() {
   echo $(tput setaf 2)Deploy dotfiles complete!. ✔︎$(tput sgr0)
 }
 
+suggest_missing_gitconfig_files() {
+  gitconfig_file="${DOT_DIRECTORY}/.gitconfig"
+  [ ! -f "${gitconfig_file}" ] && return
+
+  include_paths=()
+  while IFS= read -r path; do
+    [ -z "${path}" ] && continue
+    include_paths+=("${path}")
+  done < <(awk -F'=' '/^[[:space:]]*path[[:space:]]*=/{
+    gsub(/^[[:space:]]+|[[:space:]]+$/, "", $2)
+    print $2
+  }' "${gitconfig_file}")
+
+  [ ${#include_paths[@]} -eq 0 ] && return
+
+  missing_files=()
+  for path in "${include_paths[@]}"; do
+    if [[ "${path}" == ~* ]]; then
+      target_path="${path/#\~/${HOME}}"
+    elif [[ "${path}" == /* ]]; then
+      target_path="${path}"
+    else
+      target_path="${HOME}/${path}"
+    fi
+
+    [ -f "${target_path}" ] || missing_files+=("${target_path}")
+  done
+
+  if [ ${#missing_files[@]} -gt 0 ]; then
+    echo "$(tput setaf 3)Suggestion: Create the following gitconfig include file(s) for GitHub email switching:$(tput sgr0)"
+    for missing in "${missing_files[@]}"; do
+      echo "  - ${missing}"
+    done
+    echo "  ex) cat > ${HOME}/.gitconfig.user <<'EOF'"
+    echo "      [user]"
+    echo "        name = your.name"
+    echo "        email = your.email@example.com"
+    echo "      EOF"
+  fi
+}
+
 initialize() {
   # ignore shell execution error temporarily
   set +e
@@ -190,6 +231,7 @@ command=$1
 case $command in
   deploy)
     link_files
+    suggest_missing_gitconfig_files
     ;;
   init*)
     initialize
