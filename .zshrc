@@ -131,3 +131,8 @@ export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
 export PATH="$HOME/.rd/bin:$PATH"
 ### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
 export PATH="$HOME/.local/bin:$PATH"
+
+# WSL
+if grep -qi microsoft /proc/version 2>/dev/null; then
+  export NODE_EXTRA_CA_CERTS=/etc/ssl/certs/ca-certificates.crt
+fi
