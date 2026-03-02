@@ -15,6 +15,11 @@ run_brew() {
 
     echo "Installing missing Homebrew formulae..."
 
+    if [[ "$OSTYPE" == "linux"* ]]; then
+      export HOMEBREW_BUNDLE_CASK_SKIP=1
+      export HOMEBREW_BUNDLE_VSCODE_SKIP=1
+    fi
+
     brew bundle install --no-upgrade
 
     echo "$(tput setaf 2)Installed missing formulae ✔︎$(tput sgr0)"
@@ -23,16 +28,6 @@ run_brew() {
     brew cleanup
     echo "$(tput setaf 2)Cleanup Homebrew complete. ✔︎$(tput sgr0)"
 
-    echo "Install asdf plugins..."
-    echo "Install node..."
-    asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
-    asdf install nodejs latest
-    asdf global nodejs latest
-    echo "Install ruby..."
-    asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git
-    asdf install ruby latest
-    asdf global ruby latest
-    echo "$(tput setaf 2)Install asdf plugins complete. ✔︎$(tput sgr0)"
   fi
 
   if has "fzf"; then
