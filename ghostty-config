@@ -3,7 +3,9 @@
 
 # Fonts
 font-family = Droid Sans Mono for Powerline
+font-family = BIZ UDGothic
 font-size = 14
+font-feature = -dlig
 
 # Codepoint map for Powerline symbols
 font-codepoint-map = U+E0A0-U+E0A3,U+E0C0-U+E0C7=Droid Sans Mono for Powerline
