@@ -2,7 +2,8 @@
 # Migrated from kitty.conf
 
 # Fonts
-font-family = Droid Sans Mono for Powerline
+# font-family = Droid Sans Mono for Powerline
+font-family = Source Code Pro for Powerline
 font-family = BIZ UDGothic
 font-size = 14
 font-feature = -dlig
