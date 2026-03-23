@@ -34,35 +34,6 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Never run destructive commands (`reset --hard`, `checkout .`, `clean -f`, `branch -D`) unless explicitly requested by the user
 - **Override: If the user explicitly specifies a git command, follow that instruction even if it contradicts the rules above**
 
-## Needle-in-a-Haystack Search Pattern
-
-When searching through large volumes of external resources to find specific, small pieces of information (validation checks, key facts, evidence of past decisions, etc.), delegate the search to a subagent and return only a consolidated report with findings and evidence.
-
-**When to apply:**
-- Web search for past error solutions, known issues, or specific technical facts
-- GitHub issues/PRs search (`gh` CLI) for past decisions, related changes, or specific outcomes
-- Backlog, Slack, Confluence, or other knowledge bases with accumulated historical data
-- Any task where the ratio of "data to scan" vs "information to extract" is high
-
-**How to execute:**
-- Use the Task tool with `subagent_type="general-purpose"` for the search agent
-- Choose the model based on search complexity:
-  - `model="haiku"` — Simple keyword lookups, straightforward fact checks, single-source searches
-  - `model="sonnet"` — Multi-source cross-referencing, nuanced interpretation, complex filtering across many results
-  - `model="opus"` — Only when deep reasoning about ambiguous or contradictory findings is required
-- The prompt to the subagent must clearly specify:
-  1. What to search for (specific keywords, error messages, decision context, etc.)
-  2. Where to search (which tools/sources to use)
-  3. What to return: a concise report containing either the found result(s) with supporting evidence (URLs, quotes, dates) or an explicit "not found" conclusion with a summary of what was searched
-- Launch multiple search subagents in parallel when searching independent sources simultaneously
-- Do NOT dump raw search results into the main conversation — always summarize findings before presenting to the user
-
-**Report format the subagent should return:**
-- **Found / Not Found** status
-- **Evidence**: Direct quotes, URLs, issue/PR numbers, dates
-- **Search scope**: What sources were checked and what queries were used
-- **Confidence**: How confident the finding is (exact match, partial match, inferred)
-
 ## Post-Task Review
 
 - After completing significant tasks (bug fixes, feature implementations, investigations), invoke the `post-task-review` skill to review for architectural debt, propose GitHub issues, and suggest CLAUDE.md updates
