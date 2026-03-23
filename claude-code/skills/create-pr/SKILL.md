@@ -99,9 +99,8 @@ Same pattern.
 
 ## Testing
 
-```bash
-curl -s https://example.com/endpoint | jq .
-```
+  bash
+  curl -s https://example.com/endpoint | jq .
 
 EOF
 )"
