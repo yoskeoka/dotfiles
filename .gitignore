@@ -3,3 +3,4 @@
 .ssh
 .aws
 session.json
+__pycache__
