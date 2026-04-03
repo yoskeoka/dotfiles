@@ -128,7 +128,7 @@ alias watch='viddy'
 export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
 
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
-export PATH="/Users/okamoto.yosuke/.rd/bin:$PATH"
+export PATH="$HOME/.rd/bin:$PATH"
 ### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
 export PATH="$HOME/.local/bin:$PATH"
 
@@ -136,3 +136,6 @@ export PATH="$HOME/.local/bin:$PATH"
 if grep -qi microsoft /proc/version 2>/dev/null; then
   export NODE_EXTRA_CA_CERTS=/etc/ssl/certs/ca-certificates.crt
 fi
+
+# disable RTK telemetry https://github.com/rtk-ai/rtk#privacy--telemetry
+export RTK_TELEMETRY_DISABLED=1

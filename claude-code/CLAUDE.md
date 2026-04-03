@@ -1,7 +1,5 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
-
 ## User Rules
 
 - Always respond in the same language I used to ask the question
@@ -13,6 +11,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
   - Keep English and Japanese content in its original language
   - Translate other languages (Chinese, French, etc.) to Japanese
 - Code comments and documentation should always be written in English
+- External outputs (GitHub PRs/issues/comments, Notion, Google Docs, Jira, Slack) should be written in English by default, regardless of conversation language, unless explicitly instructed otherwise
 - When user query or context includes 'https://github.com/moneyforward/', don't use web access and use GitHub CLI(gh command)
 
 ## GitHub CLI Usage
@@ -37,3 +36,5 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Post-Task Review
 
 - After completing significant tasks (bug fixes, feature implementations, investigations), invoke the `post-task-review` skill to review for architectural debt, propose GitHub issues, and suggest CLAUDE.md updates
+
+@RTK.md
