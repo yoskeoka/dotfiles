@@ -1,0 +1,35 @@
+# Ghostty/cmux configuration
+# Migrated from kitty.conf
+
+# Fonts
+# font-family = Droid Sans Mono for Powerline
+font-family = Source Code Pro for Powerline
+font-family = BIZ UDGothic
+font-size = 14
+font-feature = -dlig
+
+# Codepoint map for Powerline symbols
+font-codepoint-map = U+E0A0-U+E0A3,U+E0C0-U+E0C7=Droid Sans Mono for Powerline
+
+# Colors
+foreground = #eeeeee
+background = #111111
+
+# NOTE: background-opacity and background-blur are Ghostty options
+# but not supported by cmux as of 2026-03. Kept here commented for reference.
+# background-opacity = 0.9
+# background-blur = true
+
+# Keybindings
+
+# Split pane down (kitty-compatible: Ctrl+Shift+Enter)
+keybind = ctrl+shift+enter=new_split_down
+
+# Font size changes (+/-2pt increment, kitty-compatible)
+# cmux defaults (Cmd+=/Cmd+-/Cmd+0) remain available alongside these
+keybind = ctrl+shift+equal=increase_font_size:2
+keybind = ctrl+shift+minus=decrease_font_size:2
+keybind = ctrl+shift+backspace=reset_font_size
+
+# Shift+Enter sends ESC+Return (same as kitty config)
+keybind = shift+enter=text:\x1b\x0d
