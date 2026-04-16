@@ -6,3 +6,5 @@ Untitled*
 
 # Claude Code local settings
 .claude/settings.local.json
+# asdf version pinning 
+.tool-versions
