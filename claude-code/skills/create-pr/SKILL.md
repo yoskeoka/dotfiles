@@ -12,8 +12,13 @@ Push branch and create a PR with the repo's PR template. Focus on design decisio
 ## Workflow
 
 1. **Push branch** with `-u` flag
-2. **Find PR template** (`.github/PULL_REQUEST_TEMPLATE.md` or similar)
-3. **Create PR** using `gh pr create` with the template structure
+2. **Read PR template**: Find and READ `.github/PULL_REQUEST_TEMPLATE.md` (or variants like `.github/PULL_REQUEST_TEMPLATE/default.md`). If found, use its structure as the base for the PR body.
+3. **Merge custom sections into template**:
+   - Keep ALL existing template sections/headers intact — never remove or rename them
+   - Fill in template sections with relevant content from the changes
+   - Add custom sections (AI Implementation Context, Design Decisions, Testing) under the most appropriate existing header, OR append at the end if no suitable header exists
+   - If no PR template is found, use the structure from the Example section below
+4. **Create PR** using `gh pr create`
 
 ## PR Body Structure
 
@@ -115,3 +120,41 @@ EOF
 - Copying ticket content into AI Implementation Context instead of focusing on directives and judgment calls
 - Omitting requirements that emerged during AI discussion but weren't in the original ticket
 - Not mentioning when trade-off priorities changed during implementation
+
+## Handling PR Review Comments
+
+When asked to view or address PR review comments (inline code review comments on diffs):
+
+### Recommended: Use the helper script
+
+```bash
+~/dotfiles/claude-code/scripts/gh-pr-comments.sh "" [owner/repo] [pr_number]
+```
+
+- Do NOT use `--no-bots` — Copilot review comments are valuable and should be addressed
+- Arguments are positional. `reviewer` is the first arg; pass `""` to skip it
+- Auto-detects repo and PR number from the current branch if omitted
+
+### Fallback: Manual `gh api` calls
+
+If finer-grained filtering is needed (e.g., specific review ID, reply threading):
+
+```bash
+# List all reviews
+gh api repos/OWNER/REPO/pulls/PR/reviews --jq '.[] | "\(.id) \(.user.login) \(.state)"'
+
+# Get comments from a specific review
+gh api repos/OWNER/REPO/pulls/PR/reviews/REVIEW_ID/comments --jq '.[] | "ID:\(.id) path:\(.path) line:\(.line // .original_line)\n\(.body)\n---"'
+
+# Reply to an inline comment
+gh api repos/OWNER/REPO/pulls/PR/comments/COMMENT_ID/replies -X POST -f body="reply text"
+```
+
+**jq caveat:** In this shell, `!=` in jq expressions gets escaped to `\!=` and causes parse errors. Always use `== ... | not` instead:
+
+```jq
+# NG
+select(.user.login != "bot")
+# OK
+select(.user.login == "bot" | not)
+```

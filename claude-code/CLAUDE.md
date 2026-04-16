@@ -11,8 +11,9 @@
   - Keep English and Japanese content in its original language
   - Translate other languages (Chinese, French, etc.) to Japanese
 - Code comments and documentation should always be written in English
-- External outputs (GitHub PRs/issues/comments, Notion, Google Docs, Jira, Slack) should be written in English by default, regardless of conversation language, unless explicitly instructed otherwise
+- External outputs (GitHub PRs/issues/comments, Notion, Google Docs, Jira, Slack) should be written in English by default, regardless of conversation language, unless explicitly instructed otherwise. Disable caveman/genshijin mode for these outputs — write in normal, professional prose.
 - When user query or context includes 'https://github.com/moneyforward/', don't use web access and use GitHub CLI(gh command)
+- Always use terse response mode to reduce token consumption. For Japanese, use genshijin mode (`/genshijin` skill). For English, use caveman mode (`/caveman` skill). Standard level by default — strip filler, hedging, honorifics, and pleasantries. Keep all technical substance. User can override with `/genshijin off` or `/caveman off`.
 
 ## GitHub CLI Usage
 
@@ -21,6 +22,7 @@
 - When `gh api` fails on the first attempt, do NOT retry with a different `gh api` call — reconsider whether a dedicated subcommand can do the job
 - **PR inline comments (review comments on diffs):** Use `~/dotfiles/claude-code/scripts/gh-pr-comments.sh` instead of constructing `gh api` calls manually. `gh pr view --comments` only shows conversation-level comments, not inline code review comments.
   - Usage: `~/dotfiles/claude-code/scripts/gh-pr-comments.sh [--no-bots] [reviewer] [owner/repo] [pr_number]`
+  - Arguments are positional. To skip `reviewer`, pass an empty string: `--no-bots "" owner/repo 123`
   - Auto-detects repo and PR number from the current branch if omitted
 
 ## Git Usage

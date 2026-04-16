@@ -94,8 +94,6 @@ link_files() {
     "kitty.conf .config/kitty/kitty.conf"
     "ghostty-config .config/ghostty/config"
     ".hammerspoon .hammerspoon"
-    "claude-code/CLAUDE.md .claude/CLAUDE.md"
-    "claude-code/skills .claude/skills"
   )
   case ${OSTYPE} in
   darwin*)
