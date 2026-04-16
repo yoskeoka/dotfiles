@@ -22,6 +22,7 @@
 	# template = ~/.stCommitMsg
 [http]
 	sslVersion = tlsv1.2
+	sslCAInfo = /etc/ssl/certs/ca-certificates.crt
 [filter "lfs"]
 	required = true
 	clean = git-lfs clean -- %f
@@ -35,5 +36,7 @@
 	autoSetupRemote = true
 [init]
 	defaultBranch = main
+[submodule]
+	recurse = true
 [url "git@github.com:"]
 	insteadOf = https://github.com/
