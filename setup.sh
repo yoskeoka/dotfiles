@@ -78,6 +78,7 @@ link_files() {
     [[ ${f} = ".git" ]] && continue
     [[ ${f} = ".gitignore" ]] && continue
     [[ ${f} = ".editorconfig" ]] && continue
+    [[ ${f} = ".gitconfig.linux" ]] && continue
 
     # Force remove the file if it's already there
     [ -n "${OVERWRITE}" -a -e ${HOME}/${f} ] && rm -f ${HOME}/${f}
@@ -132,6 +133,10 @@ link_files() {
   darwin*)
     mkdir -p ${HOME}/Library/Preferences
     ln -snfv ${DOT_DIRECTORY}/acc ${HOME}/Library/Preferences/atcoder-cli-nodejs
+    ;;
+  linux*)
+    [ -n "${OVERWRITE}" -a -e ${HOME}/.gitconfig.linux ] && rm -f ${HOME}/.gitconfig.linux
+    ln -snfv ${DOT_DIRECTORY}/.gitconfig.linux ${HOME}/.gitconfig.linux
     ;;
   *)
     ;;

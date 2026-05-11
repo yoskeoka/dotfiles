@@ -7,6 +7,10 @@
 
 [includeIf "gitdir:**/github.com/moneyforward/"]
 	path = .gitconfig.mf-user
+
+# Linux-only settings (symlinked by setup.sh only on Linux; ignored if missing)
+[include]
+	path = ~/.gitconfig.linux
 # # This file should contain a user section like below.
 # [user]
 # 	name = your.name
@@ -22,7 +26,6 @@
 	# template = ~/.stCommitMsg
 [http]
 	sslVersion = tlsv1.2
-	sslCAInfo = /etc/ssl/certs/ca-certificates.crt
 [filter "lfs"]
 	required = true
 	clean = git-lfs clean -- %f
@@ -38,5 +41,12 @@
 	defaultBranch = main
 [submodule]
 	recurse = true
-[url "git@github.com:"]
-	insteadOf = https://github.com/
+[credential]
+	helper = 
+	helper = gh config set git_protocol https auth git-credential
+[credential "https://github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential

@@ -6,5 +6,7 @@ Untitled*
 
 # Claude Code local settings
 .claude/settings.local.json
-# asdf version pinning 
+# asdf version pinning
 .tool-versions
+# worktrees for git worktrees or clones
+.worktrees/
