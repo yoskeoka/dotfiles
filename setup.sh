@@ -142,6 +142,18 @@ link_files() {
     ;;
   esac
 
+  # Git hooks
+  current_hooks_path="$(git -C "${DOT_DIRECTORY}" config --local core.hooksPath 2>/dev/null || true)"
+  if [ "$current_hooks_path" = "${DOT_DIRECTORY}/git-hooks" ] || [ "$current_hooks_path" = "git-hooks" ]; then
+    echo "core.hooksPath already set"
+  else
+    if git -C "${DOT_DIRECTORY}" config --local core.hooksPath git-hooks 2>/dev/null; then
+      echo "core.hooksPath -> git-hooks"
+    else
+      echo "$(tput setaf 3)SKIP: could not set core.hooksPath$(tput sgr0)"
+    fi
+  fi
+
   echo $(tput setaf 2)Deploy dotfiles complete!. ✔︎$(tput sgr0)
 }
 
