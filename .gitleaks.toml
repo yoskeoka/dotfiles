@@ -1,0 +1,8 @@
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Repo-specific allowlists"
+paths = [
+  '''\.gitleaks\.toml$''',
+]
